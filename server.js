@@ -9,7 +9,7 @@ var server={
 
         this.io = require('socket.io').listen(server);  //pass a http.Server instance
         
-        server.listen(5000);  //listen on port 80
+        server.listen(process.env.PORT);  //listen on port 80
 
         this.io.set('origins', '*:*');
         
@@ -17,6 +17,8 @@ var server={
     },
 
     listen : function(socket){
+
+        console.log('connection');
 
         socket.on('postsChanged', function(){
             console.log('postsChanged');
