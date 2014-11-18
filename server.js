@@ -1,21 +1,20 @@
 var server={
     init : function(){
 
-        var http = require('http');
+        var express = require('express');
 
-        this.server = http.createServer(function(req, res) {
-            res.header("Access-Control-Allow-Origin", "*");
-            res.writeHead(200);
-            res.end('yoyo');
+        var app = express();
+
+        app.get('/', function(req, res) {
+            res.setHeader("Access-Control-Allow-Origin", "*");
+            res.end('artfinder sockets server');
         });
-        
-        this.server.listen(3000);
 
-        // this.io = require('socket.io');
-        
-        // this.io.listen(this.server);
+        app.listen(80);
 
-        // this.io.on('connection',this.listen);
+        this.io = require('socket.io').listen(3000);
+
+        this.io.on('connection', this.listen);
     },
 
     listen : function(socket){
