@@ -1,19 +1,10 @@
 var server={
     init : function(){
 
-        var express = require('express');
-
-        var app = express();
-
-        app.get('/', function(req, res) {
-            res.setHeader("Access-Control-Allow-Origin", "*");
-            res.end('artfinder sockets server');
-        });
-
-        app.listen(80);
-
         this.io = require('socket.io').listen(3000);
 
+        this.io.set('origins', '*:*');
+        
         this.io.on('connection', this.listen);
     },
 
