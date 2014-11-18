@@ -1,22 +1,21 @@
 var server={
     init : function(){
 
-        this.http = require('http');
+        var http = require('http');
 
         this.server = http.createServer(function(req, res) {
-          res.writeHead(200);
-          res.end('yoyo');
+            res.header("Access-Control-Allow-Origin", "*");
+            res.writeHead(200);
+            res.end('yoyo');
         });
-
-        this.server.set('origins', '*:*');
         
-        this.server.listen(80);
+        this.server.listen(3000);
 
-        this.io = require('socket.io');
+        // this.io = require('socket.io');
         
-        this.io.listen(server);
+        // this.io.listen(this.server);
 
-        this.io.on('connection',this.listen);
+        // this.io.on('connection',this.listen);
     },
 
     listen : function(socket){
