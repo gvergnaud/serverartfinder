@@ -9,7 +9,7 @@ var server={
 
         this.io = require('socket.io').listen(server);  //pass a http.Server instance
         
-        server.listen(process.env.PORT);  //listen on port 80
+        server.listen(process.env.PORT);  //listen on port 3000 || process.env.PORT
 
         this.io.set('origins', '*:*');
         
@@ -20,9 +20,10 @@ var server={
 
         console.log('connection');
 
-        socket.on('postsChanged', function(){
+        socket.on('postsChanged', function(info){
             console.log('postsChanged');
-            socket.broadcast.emit('refreshPosts');
+            console.log(info);
+            socket.broadcast.emit('refreshPosts', info);
         });
     }
 };
