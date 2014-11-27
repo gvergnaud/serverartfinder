@@ -15,7 +15,7 @@ var server={
         socket.on('postsChanged', function(info){
             console.log('postsChanged');
             console.log(info);
-            socket.broadcast.emit('refreshPosts', info);
+            socket.broadcast.emit('refreshPost', info);
         });
 
         socket.on('newPost', function(){
