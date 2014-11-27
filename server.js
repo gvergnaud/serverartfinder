@@ -25,6 +25,11 @@ var server={
             console.log(info);
             socket.broadcast.emit('refreshPosts', info);
         });
+
+        socket.on('newPost', function(){
+            console.log('newPost');
+            socket.broadcast.emit('loadNewPost');
+        });
     }
 };
 server.init();
