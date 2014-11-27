@@ -1,16 +1,8 @@
 var server={
     init : function(){
 
-        var http = require('http');
-        var express = require('express'),
-            app = express();
-
-        var server = http.createServer(app);
-
-        this.io = require('socket.io').listen(server);  //pass a http.Server instance
+        this.io = require('socket.io').listen(process.env.PORT);  //pass a http.Server instance
         
-        server.listen(process.env.PORT);  //listen on port 3000 || process.env.PORT
-
         this.io.set('origins', '*:*');
         
         this.io.on('connection', this.listen);    
